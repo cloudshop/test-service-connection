@@ -1,10 +1,10 @@
 <?xml version="1.0"  encoding="UTF-8"?>  
-<project name="ant-jmeter-test" default="sendmail" basedir=".">  
+<project name="ant-jmeter-test" default="report" basedir=".">  
     <tstamp>  
         <format property="time" pattern="yyyyMMddHHmm" />  
     </tstamp>  
     <!--  Jmeter 目录-->  
-    <property name="jmeter.home" value="$usr/share/jmeter" /> 
+    <property name="jmeter.home" value="usr/share/jmeter" /> 
     <property name="report.title" value="雷风旅行服务接口测试"/>	
     <!-- jmeter生成jtl格式的结果报告的路径-->  
     <property name="jmeter.result.jtl.dir" value="${basedir}/report/jtl" />  
@@ -47,18 +47,4 @@
 		<param name="dateReport" expression="${report.datestamp}"/>
 		</xslt> 
     </target>  
-	<target name="sendmail" depends="report">
-	<tstamp>
-	<format property="TODAY" pattern="yyy-MM-dd"/>
-	<format property="TSTAMP" pattern="hh:mm:ss"/>
-	</tstamp>
-	<loadfile property="reporthtml"
-      srcFile="${basedir}/report/html/LeiFengReport.html"
-      encoding="utf-8"/>
-	<property name="mailto" value="57150877@qq.com,wcyc_yp@126.com"/>
-	<property name="mailfrom" value="yaop@tuyouchina.com"/>
-	<mail classpathref="mail.classpath" from="${mailfrom}" tolist="${mailto}" mailhost="smtp.mxhichina.com" mailport="25" user="yaop@tuyouchina.com" password="19849121Yp" subject="服务运行状态监测报告" message="${reporthtml}" messagemimetype="text/html">
-	<fileset dir="${basedir}/report/html/" erroronmissingdir="false"/>
-	</mail>
-	</target>
 </project>  
