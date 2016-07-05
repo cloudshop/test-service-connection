@@ -4,7 +4,7 @@
         <format property="time" pattern="yyyyMMddHHmm" />  
     </tstamp>  
     <!--  Jmeter 目录-->  
-    <property name="jmeter.home" value="${basedir}/apache-jmeter-2.12" /> 
+    <property name="jmeter.home" value="$usr/share/jmeter" /> 
     <property name="report.title" value="雷风旅行服务接口测试"/>	
     <!-- jmeter生成jtl格式的结果报告的路径-->  
     <property name="jmeter.result.jtl.dir" value="${basedir}/report/jtl" />  
@@ -22,7 +22,7 @@
 	</target>
       
     <target name="test" depends="clean">  
-        <taskdef name="jmeter" classname="org.programmerplanet.ant.taskdefs.jmeter.JMeterTask" />  
+        <taskdef name="jmeter" classname="org.programmerplanet.ant.taskdefs.jmeter.JMeterTask" classpath="${basedir}/extra/ant-jmeter-1.1.1.jar"/>  
         <jmeter jmeterhome="${jmeter.home}" resultlog="${jmeter.result.jtlName}">  
             <!-- 声明要运行的脚本。"*.jmx"指包含此目录下的所有jmeter脚本-->  
             <testplans dir="${basedir}/test_case" includes="*.jmx" />  
@@ -30,16 +30,20 @@
         </jmeter>  
     </target>  
     <path id="xslt.classpath">
-        <fileset dir="${jmeter.home}/lib" includes="xalan*.jar"/>
-        <fileset dir="${jmeter.home}/lib" includes="serializer*.jar"/>
+        <fileset dir="${basedir}/apache-jmeter-2.12/lib" includes="xalan*.jar"/>
+        <fileset dir="${basedir}/apache-jmeter-2.12/lib" includes="serializer*.jar"/>
     </path>      
+    <path id="mail.classpath">
+        <fileset dir="${basedir}/extra" includes="activation.jar"/>
+        <fileset dir="${basedir}/extra" includes="mail.jar"/>
+    </path> 
     <target name="report" depends="test">  
 	<tstamp> <format property="report.datestamp" pattern="yyyy/MM/dd HH:mm" /></tstamp>
         <xslt classpathref="xslt.classpath" 
               force="true" 
 			  in="${jmeter.result.jtlName}"  
               out="${jmeter.result.htmlName}"  
-              style="${jmeter.home}/extras/jmeter-results-detail-report_21.xsl" >  
+              style="${basedir}/apache-jmeter-2.12/extras/jmeter-results-detail-report_21.xsl" >  
 		<param name="dateReport" expression="${report.datestamp}"/>
 		</xslt> 
     </target>  
@@ -53,7 +57,7 @@
       encoding="utf-8"/>
 	<property name="mailto" value="57150877@qq.com,wcyc_yp@126.com"/>
 	<property name="mailfrom" value="yaop@tuyouchina.com"/>
-	<mail from="${mailfrom}" tolist="${mailto}" mailhost="smtp.mxhichina.com" mailport="25" user="yaop@tuyouchina.com" password="19849121Yp" subject="服务运行状态监测报告" message="${reporthtml}" messagemimetype="text/html">
+	<mail classpathref="mail.classpath" from="${mailfrom}" tolist="${mailto}" mailhost="smtp.mxhichina.com" mailport="25" user="yaop@tuyouchina.com" password="19849121Yp" subject="服务运行状态监测报告" message="${reporthtml}" messagemimetype="text/html">
 	<fileset dir="${basedir}/report/html/" erroronmissingdir="false"/>
 	</mail>
 	</target>
