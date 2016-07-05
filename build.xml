@@ -4,7 +4,7 @@
         <format property="time" pattern="yyyyMMddHHmm" />  
     </tstamp>  
     <!--  Jmeter 目录-->  
-    <property name="jmeter.home" value="usr/share/jmeter" /> 
+    <property name="jmeter.home" value="/usr/share/jmeter" /> 
     <property name="report.title" value="雷风旅行服务接口测试"/>	
     <!-- jmeter生成jtl格式的结果报告的路径-->  
     <property name="jmeter.result.jtl.dir" value="${basedir}/report/jtl" />  
