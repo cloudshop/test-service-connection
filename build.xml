@@ -4,12 +4,12 @@
         <format property="time" pattern="yyyyMMddHHmm" />  
     </tstamp>  
     <!--  Jmeter 目录-->  
-    <property name="jmeter.home" value="E:\apache-jmeter\apache-jmeter-2.12" /> 
+    <property name="jmeter.home" value="${basedir}/apache-jmeter-2.12" /> 
     <property name="report.title" value="雷风旅行服务接口测试"/>	
     <!-- jmeter生成jtl格式的结果报告的路径-->  
-    <property name="jmeter.result.jtl.dir" value="E:\apache-jmeter\report\jtl" />  
+    <property name="jmeter.result.jtl.dir" value="${basedir}/report/jtl" />  
     <!-- jmeter生成html格式的结果报告的路径-->  
-    <property name="jmeter.result.html.dir" value="E:\apache-jmeter\report\html" />  
+    <property name="jmeter.result.html.dir" value="${basedir}/report/html" />  
     <!-- 生成的报告的前缀-->  
     <property name="ReportName" value="LeiFengReport" />  
     <property name="jmeter.result.jtlName" value="${jmeter.result.jtl.dir}/${ReportName}.jtl" />  
@@ -21,8 +21,8 @@
     </target>  
 	
 	<target name="clean">
-		<delete file="E:\apache-jmeter\report\html\LeiFengReport.html"/>
-		<delete file="E:\apache-jmeter\report\jtl\LeiFengReport.jtl"/>
+		<delete file="${basedir}/report/html/LeiFengReport.html"/>
+		<delete file="${basedir}/report/html/LeiFengReport.jtl"/>
 	</target>
       
     <target name="test">  
@@ -45,12 +45,6 @@
               out="${jmeter.result.htmlName}"  
               style="${jmeter.home}/extras/jmeter-results-detail-report_21.xsl" >  
 		<param name="dateReport" expression="${report.datestamp}"/>
-		</xslt>
-		 <copy todir="${jmeter.result.html.dir}">  
-            <fileset dir="${jmeter.home}/extras">  
-                <include name="collapse.png" />  
-                <include name="expand.png" />  
-            </fileset>  
-        </copy> 
+		</xslt> 
     </target>  
 </project>  
