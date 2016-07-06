@@ -17,8 +17,8 @@
  
 	
 	<target name="clean">
-		<delete file="${basedir}/report/html/LeiFengReport.html"/>
-		<delete file="${basedir}/report/html/LeiFengReport.jtl"/>
+		<delete file="${jmeter.result.htmlName}"/>
+		<delete file="${jmeter.result.jtlName}"/>
 	</target>
       
     <target name="test" depends="clean">  
@@ -33,10 +33,6 @@
         <fileset dir="${basedir}/apache-jmeter-2.12/lib" includes="xalan*.jar"/>
         <fileset dir="${basedir}/apache-jmeter-2.12/lib" includes="serializer*.jar"/>
     </path>      
-    <path id="mail.classpath">
-        <fileset dir="${basedir}/extra" includes="activation.jar"/>
-        <fileset dir="${basedir}/extra" includes="mail.jar"/>
-    </path> 
     <target name="report" depends="test">  
 	<tstamp> <format property="report.datestamp" pattern="yyyy/MM/dd HH:mm" /></tstamp>
         <xslt classpathref="xslt.classpath" 
