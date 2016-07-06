@@ -39,7 +39,7 @@
               force="true" 
 			  in="${jmeter.result.jtlName}"  
               out="${jmeter.result.htmlName}"  
-              style="${basedir}/apache-jmeter-2.12/extras/jmeter-results-detail-report_21.xsl" >  
+              style="${basedir}/extra/jmeter-results-detail-report_21.xsl" >  
 		<param name="dateReport" expression="${report.datestamp}"/>
 		</xslt> 
     </target>  
