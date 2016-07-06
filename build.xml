@@ -30,8 +30,8 @@
         </jmeter>  
     </target>  
     <path id="xslt.classpath">
-        <fileset dir="${basedir}/apache-jmeter-2.12/lib" includes="xalan*.jar"/>
-        <fileset dir="${basedir}/apache-jmeter-2.12/lib" includes="serializer*.jar"/>
+        <fileset dir="${basedir}/extra" includes="xalan*.jar"/>
+        <fileset dir="${basedir}/extra" includes="serializer*.jar"/>
     </path>      
     <target name="report" depends="test">  
 	<tstamp> <format property="report.datestamp" pattern="yyyy/MM/dd HH:mm" /></tstamp>
