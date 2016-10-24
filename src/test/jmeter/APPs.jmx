@@ -1748,7 +1748,7 @@ CONCAT(&quot;{order_id:&apos;&quot;,order_id),&quot;&apos;}&quot;),&quot;]&quot;
         <collectionProp name="Arguments.arguments">
           <elementProp name="SERVER_IP" elementType="Argument">
             <stringProp name="Argument.name">SERVER_IP</stringProp>
-            <stringProp name="Argument.value">101.200.205.241</stringProp>
+            <stringProp name="Argument.value">localhost</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="PORT" elementType="Argument">
